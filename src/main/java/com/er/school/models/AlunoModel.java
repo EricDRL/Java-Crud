@@ -3,14 +3,20 @@ package com.er.school.models;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "tb_aluno")
 public class AlunoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_aluno")
     private Long id;
+
     private String nome;
     private String endereco;
+
+    @Column(name = "email_aluno")
     private String email;
+    private int idadqe;
 
     public AlunoModel(){}
 
@@ -44,5 +50,13 @@ public class AlunoModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getIdadqe() {
+        return idadqe;
+    }
+
+    public void setIdadqe(int idadqe) {
+        this.idadqe = idadqe;
     }
 }

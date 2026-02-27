@@ -1,6 +1,7 @@
 package com.er.school.controllers;
 
 import com.er.school.models.AlunoModel;
+import com.er.school.repositories.AlunoRepository;
 import com.er.school.services.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,15 @@ public class AlunoController {
         return alunoService.criarAluno(alunoModel);
     }
 
+    @GetMapping
     public List<AlunoModel> buscarTodosAlunos(){
         return alunoService.buscarTodosAlunos();
+    }
+
+    @GetMapping("/{id}")
+    public AlunoModel getAlunoById(@PathVariable Long id) {
+        return AlunoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
     }
 
     @DeleteMapping("/{id}")
